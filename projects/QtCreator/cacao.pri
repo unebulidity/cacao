@@ -1,0 +1,250 @@
+########################################################################
+# Copyright (c) 1988-2022 $organization$
+#
+# This software is provided by the author and contributors ``as is''
+# and any express or implied warranties, including, but not limited to,
+# the implied warranties of merchantability and fitness for a particular
+# purpose are disclaimed. In no event shall the author or contributors
+# be liable for any direct, indirect, incidental, special, exemplary,
+# or consequential damages (including, but not limited to, procurement
+# of substitute goods or services; loss of use, data, or profits; or
+# business interruption) however caused and on any theory of liability,
+# whether in contract, strict liability, or tort (including negligence
+# or otherwise) arising in any way out of the use of this software,
+# even if advised of the possibility of such damage.
+#
+#   File: cacao.pri
+#
+# Author: $author$
+#   Date: 10/29/2022
+#
+# generic QtCreator project .pri file for framework cacao
+########################################################################
+# Depends: nadir;rostra;lamna;talas
+
+OTHER_RPO = ../../../../../../..
+OTHER_PKG = ../../../../../..
+OTHER_PRJ = ../../../../..
+OTHER_BLD = ..
+
+THIRDPARTY_NAME = thirdparty
+THIRDPARTY_PKG = $${OTHER_PKG}/$${THIRDPARTY_NAME}
+THIRDPARTY_PRJ = $${OTHER_PRJ}/$${THIRDPARTY_NAME}
+THIRDPARTY_SRC = $${OTHER_PRJ}/source/$${THIRDPARTY_NAME}
+
+########################################################################
+# nadir
+NADIR_VERSION_MAJOR = 0
+NADIR_VERSION_MINOR = 0
+NADIR_VERSION_RELEASE = 0
+NADIR_VERSION = $${NADIR_VERSION_MAJOR}.$${NADIR_VERSION_MINOR}.$${NADIR_VERSION_RELEASE}
+NADIR_NAME = nadir
+NADIR_GROUP = $${NADIR_NAME}
+NADIR_SOURCE = source
+NADIR_CREDS = creds
+NADIR_DIR = $${NADIR_GROUP}/$${NADIR_NAME}-$${NADIR_VERSION}
+NADIR_PKG_DIR = $${NADIR_NAME}
+NADIR_BUILD_HOME = $${HOME}
+NADIR_HOME_BUILD = $${NADIR_BUILD_HOME}/build/$${NADIR_NAME}
+NADIR_HOME_BUILD_INCLUDE = $${NADIR_HOME_BUILD}/include
+NADIR_HOME_BUILD_LIB = $${NADIR_HOME_BUILD}/lib
+NADIR_THIRDPARTY_PKG = $${THIRDPARTY_PKG}/$${NADIR_DIR}
+NADIR_THIRDPARTY_PRJ = $${THIRDPARTY_PRJ}/$${NADIR_DIR}
+NADIR_THIRDPARTY_SRC = $${THIRDPARTY_SRC}/$${NADIR_PKG_DIR}
+NADIR_THIRDPARTY_SRC_GROUP = $${NADIR_GROUP}
+NADIR_THIRDPARTY_SRC_NAME = $${NADIR_NAME}
+NADIR_THIRDPARTY_SRC_DIR = $${THIRDPARTY_SRC}/$${NADIR_THIRDPARTY_SRC_GROUP}/$${NADIR_THIRDPARTY_SRC_NAME} 
+NADIR_PKG = $${OTHER_PKG}/$${NADIR_PKG_DIR}
+NADIR_PRJ = $${OTHER_PRJ}/$${NADIR_PKG_DIR}
+#NADIR_SRC = $${NADIR_THIRDPARTY_SRC_DIR}
+#NADIR_SRC = $${NADIR_THIRDPARTY_PKG}/$${NADIR_SOURCE}
+#NADIR_SRC = $${NADIR_THIRDPARTY_PRJ}/$${NADIR_SOURCE}
+NADIR_SRC = $${NADIR_PKG}/$${NADIR_SOURCE}
+#NADIR_SRC = $${NADIR_PRJ}/$${NADIR_SOURCE}
+NADIR_CRD_SRC = $${NADIR_PKG}/$${NADIR_CREDS}/$${NADIR_SOURCE}
+
+# nadir INCLUDEPATH
+#
+nadir_INCLUDEPATH += \
+$${NADIR_SRC} \
+$${NADIR_CRD_SRC} \
+
+# nadir DEFINES
+#
+nadir_DEFINES += \
+
+########################################################################
+# rostra
+ROSTRA_VERSION_MAJOR = 0
+ROSTRA_VERSION_MINOR = 0
+ROSTRA_VERSION_RELEASE = 0
+ROSTRA_VERSION = $${ROSTRA_VERSION_MAJOR}.$${ROSTRA_VERSION_MINOR}.$${ROSTRA_VERSION_RELEASE}
+ROSTRA_NAME = rostra
+ROSTRA_GROUP = $${ROSTRA_NAME}
+ROSTRA_SOURCE = source
+ROSTRA_CREDS = creds
+ROSTRA_DIR = $${ROSTRA_GROUP}/$${ROSTRA_NAME}-$${ROSTRA_VERSION}
+ROSTRA_PKG_DIR = $${ROSTRA_NAME}
+ROSTRA_BUILD_HOME = $${HOME}
+ROSTRA_HOME_BUILD = $${ROSTRA_BUILD_HOME}/build/$${ROSTRA_NAME}
+ROSTRA_HOME_BUILD_INCLUDE = $${ROSTRA_HOME_BUILD}/include
+ROSTRA_HOME_BUILD_LIB = $${ROSTRA_HOME_BUILD}/lib
+ROSTRA_THIRDPARTY_PKG = $${THIRDPARTY_PKG}/$${ROSTRA_DIR}
+ROSTRA_THIRDPARTY_PRJ = $${THIRDPARTY_PRJ}/$${ROSTRA_DIR}
+ROSTRA_THIRDPARTY_SRC = $${THIRDPARTY_SRC}/$${ROSTRA_PKG_DIR}
+ROSTRA_THIRDPARTY_SRC_GROUP = $${ROSTRA_GROUP}
+ROSTRA_THIRDPARTY_SRC_NAME = $${ROSTRA_NAME}
+ROSTRA_THIRDPARTY_SRC_DIR = $${THIRDPARTY_SRC}/$${ROSTRA_THIRDPARTY_SRC_GROUP}/$${ROSTRA_THIRDPARTY_SRC_NAME} 
+ROSTRA_PKG = $${OTHER_PKG}/$${ROSTRA_PKG_DIR}
+ROSTRA_PRJ = $${OTHER_PRJ}/$${ROSTRA_PKG_DIR}
+#ROSTRA_SRC = $${ROSTRA_THIRDPARTY_SRC_DIR}
+#ROSTRA_SRC = $${ROSTRA_THIRDPARTY_PKG}/$${ROSTRA_SOURCE}
+#ROSTRA_SRC = $${ROSTRA_THIRDPARTY_PRJ}/$${ROSTRA_SOURCE}
+ROSTRA_SRC = $${ROSTRA_PKG}/$${ROSTRA_SOURCE}
+#ROSTRA_SRC = $${ROSTRA_PRJ}/$${ROSTRA_SOURCE}
+ROSTRA_CRD_SRC = $${ROSTRA_PKG}/$${ROSTRA_CREDS}/$${ROSTRA_SOURCE}
+
+# rostra INCLUDEPATH
+#
+rostra_INCLUDEPATH += \
+$${ROSTRA_SRC} \
+$${ROSTRA_CRD_SRC} \
+
+# rostra DEFINES
+#
+rostra_DEFINES += \
+
+########################################################################
+# lamna
+LAMNA_VERSION_MAJOR = 0
+LAMNA_VERSION_MINOR = 0
+LAMNA_VERSION_RELEASE = 0
+LAMNA_VERSION = $${LAMNA_VERSION_MAJOR}.$${LAMNA_VERSION_MINOR}.$${LAMNA_VERSION_RELEASE}
+LAMNA_NAME = lamna
+LAMNA_GROUP = $${LAMNA_NAME}
+LAMNA_SOURCE = source
+LAMNA_CREDS = creds
+LAMNA_DIR = $${LAMNA_GROUP}/$${LAMNA_NAME}-$${LAMNA_VERSION}
+LAMNA_PKG_DIR = $${LAMNA_NAME}
+LAMNA_BUILD_HOME = $${HOME}
+LAMNA_HOME_BUILD = $${LAMNA_BUILD_HOME}/build/$${LAMNA_NAME}
+LAMNA_HOME_BUILD_INCLUDE = $${LAMNA_HOME_BUILD}/include
+LAMNA_HOME_BUILD_LIB = $${LAMNA_HOME_BUILD}/lib
+LAMNA_THIRDPARTY_PKG = $${THIRDPARTY_PKG}/$${LAMNA_DIR}
+LAMNA_THIRDPARTY_PRJ = $${THIRDPARTY_PRJ}/$${LAMNA_DIR}
+LAMNA_THIRDPARTY_SRC = $${THIRDPARTY_SRC}/$${LAMNA_PKG_DIR}
+LAMNA_THIRDPARTY_SRC_GROUP = $${LAMNA_GROUP}
+LAMNA_THIRDPARTY_SRC_NAME = $${LAMNA_NAME}
+LAMNA_THIRDPARTY_SRC_DIR = $${THIRDPARTY_SRC}/$${LAMNA_THIRDPARTY_SRC_GROUP}/$${LAMNA_THIRDPARTY_SRC_NAME} 
+LAMNA_PKG = $${OTHER_PKG}/$${LAMNA_PKG_DIR}
+LAMNA_PRJ = $${OTHER_PRJ}/$${LAMNA_PKG_DIR}
+#LAMNA_SRC = $${LAMNA_THIRDPARTY_SRC_DIR}
+#LAMNA_SRC = $${LAMNA_THIRDPARTY_PKG}/$${LAMNA_SOURCE}
+#LAMNA_SRC = $${LAMNA_THIRDPARTY_PRJ}/$${LAMNA_SOURCE}
+LAMNA_SRC = $${LAMNA_PKG}/$${LAMNA_SOURCE}
+#LAMNA_SRC = $${LAMNA_PRJ}/$${LAMNA_SOURCE}
+LAMNA_CRD_SRC = $${LAMNA_PKG}/$${LAMNA_CREDS}/$${LAMNA_SOURCE}
+
+# lamna INCLUDEPATH
+#
+lamna_INCLUDEPATH += \
+$${LAMNA_SRC} \
+$${LAMNA_CRD_SRC} \
+
+# lamna DEFINES
+#
+lamna_DEFINES += \
+
+########################################################################
+# talas
+TALAS_VERSION_MAJOR = 0
+TALAS_VERSION_MINOR = 0
+TALAS_VERSION_RELEASE = 0
+TALAS_VERSION = $${TALAS_VERSION_MAJOR}.$${TALAS_VERSION_MINOR}.$${TALAS_VERSION_RELEASE}
+TALAS_NAME = talas
+TALAS_GROUP = $${TALAS_NAME}
+TALAS_SOURCE = source
+TALAS_CREDS = creds
+TALAS_DIR = $${TALAS_GROUP}/$${TALAS_NAME}-$${TALAS_VERSION}
+TALAS_PKG_DIR = $${TALAS_NAME}
+TALAS_BUILD_HOME = $${HOME}
+TALAS_HOME_BUILD = $${TALAS_BUILD_HOME}/build/$${TALAS_NAME}
+TALAS_HOME_BUILD_INCLUDE = $${TALAS_HOME_BUILD}/include
+TALAS_HOME_BUILD_LIB = $${TALAS_HOME_BUILD}/lib
+TALAS_THIRDPARTY_PKG = $${THIRDPARTY_PKG}/$${TALAS_DIR}
+TALAS_THIRDPARTY_PRJ = $${THIRDPARTY_PRJ}/$${TALAS_DIR}
+TALAS_THIRDPARTY_SRC = $${THIRDPARTY_SRC}/$${TALAS_PKG_DIR}
+TALAS_THIRDPARTY_SRC_GROUP = $${TALAS_GROUP}
+TALAS_THIRDPARTY_SRC_NAME = $${TALAS_NAME}
+TALAS_THIRDPARTY_SRC_DIR = $${THIRDPARTY_SRC}/$${TALAS_THIRDPARTY_SRC_GROUP}/$${TALAS_THIRDPARTY_SRC_NAME} 
+TALAS_PKG = $${OTHER_PKG}/$${TALAS_PKG_DIR}
+TALAS_PRJ = $${OTHER_PRJ}/$${TALAS_PKG_DIR}
+#TALAS_SRC = $${TALAS_THIRDPARTY_SRC_DIR}
+#TALAS_SRC = $${TALAS_THIRDPARTY_PKG}/$${TALAS_SOURCE}
+#TALAS_SRC = $${TALAS_THIRDPARTY_PRJ}/$${TALAS_SOURCE}
+TALAS_SRC = $${TALAS_PKG}/$${TALAS_SOURCE}
+#TALAS_SRC = $${TALAS_PRJ}/$${TALAS_SOURCE}
+TALAS_CRD_SRC = $${TALAS_PKG}/$${TALAS_CREDS}/$${TALAS_SOURCE}
+
+# talas INCLUDEPATH
+#
+talas_INCLUDEPATH += \
+$${TALAS_SRC} \
+$${TALAS_CRD_SRC} \
+
+# talas DEFINES
+#
+talas_DEFINES += \
+
+
+########################################################################
+# cacao
+CACAO_NAME = cacao
+CACAO_SOURCE = source
+CACAO_CREDS = creds
+
+CACAO_PKG = ../../../../..
+CACAO_BLD = ../..
+
+CACAO_PRJ = $${CACAO_PKG}
+CACAO_BIN = $${CACAO_BLD}/bin
+CACAO_LIB = $${CACAO_BLD}/lib
+CACAO_SRC = $${CACAO_PKG}/$${CACAO_SOURCE}
+CACAO_CRD_SRC = $${CACAO_PKG}/$${CACAO_CREDS}/$${CACAO_SOURCE}
+
+# cacao BUILD_CONFIG
+#
+CONFIG(debug, debug|release) {
+BUILD_CONFIG = Debug
+cacao_DEFINES += DEBUG_BUILD
+} else {
+BUILD_CONFIG = Release
+cacao_DEFINES += RELEASE_BUILD
+}
+
+# cacao INCLUDEPATH
+#
+cacao_INCLUDEPATH += \
+$${CACAO_SRC} \
+$${CACAO_CRD_SRC} \
+$${talas_INCLUDEPATH} \
+$${lamna_INCLUDEPATH} \
+$${rostra_INCLUDEPATH} \
+$${nadir_INCLUDEPATH} \
+$${build_cacao_INCLUDEPATH} \
+
+# cacao DEFINES
+#
+cacao_DEFINES += \
+$${nadir_DEFINES} \
+$${rostra_DEFINES} \
+$${lamna_DEFINES} \
+$${talas_DEFINES} \
+$${build_cacao_DEFINES} \
+
+# cacao LIBS
+#
+cacao_LIBS += \
+-L$${CACAO_LIB}/lib$${CACAO_NAME} \
+-l$${CACAO_NAME} \
+
