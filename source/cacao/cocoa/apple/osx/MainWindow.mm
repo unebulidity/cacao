@@ -16,7 +16,7 @@
 ///   File: MainWindow.mm
 ///
 /// Author: $author$
-///   Date: 8/29/2016, 10/29/2022
+///   Date: 8/29/2016, 3/12/2024
 ///////////////////////////////////////////////////////////////////////
 #include "cacao/cocoa/apple/osx/MainWindow.hh"
 #include "cacao/cocoa/apple/osx/Logger.hh"

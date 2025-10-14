@@ -61,14 +61,16 @@ public:
                 volatile Waiter waitr(m_updateFileHash);
                 LOG_DEBUG("...waitr(m_updateFileHash)");
                 if (!(done = m_done)) {
-                    [m_mainWindow performSelectorOnMainThread:@selector(updateFileHash:)
-                                  withObject:m_mainWindow waitUntilDone:NO];
+                    LOG_DEBUG("[m_mainWindow performSelectorOnMainThread:@selector(updateFileHash:) withObject:m_mainWindow waitUntilDone:NO]...");
+                    [m_mainWindow performSelectorOnMainThread:@selector(updateFileHash:) withObject:m_mainWindow waitUntilDone:NO];
+                    LOG_DEBUG("...[m_mainWindow performSelectorOnMainThread:@selector(updateFileHash:) withObject:m_mainWindow waitUntilDone:NO]");
                 }
             } catch (const WaitStatus& status) {
                 LOG_ERROR("...catch (const WaitStatus& status) on waitr(m_updateFileHash)");
                 done = true;
             }
         }
+        LOG_DEBUG("return RunSuccess...");
         return RunSuccess;
     }
     void Stop() {

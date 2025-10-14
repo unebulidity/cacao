@@ -16,7 +16,7 @@
 ///   File: iMainWindow.mm
 ///
 /// Author: $author$
-///   Date: 7/11/2016, 7/10/2016
+///   Date: 7/11/2016
 ///////////////////////////////////////////////////////////////////////
 #include "cacao/icocoa/iMainWindow.hh"
 

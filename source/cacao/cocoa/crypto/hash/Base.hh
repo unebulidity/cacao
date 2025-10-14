@@ -79,6 +79,9 @@ public:
     virtual const char* name() const {
         return Implemented().name();
     }
+    virtual bool encoded() const {
+        return Implemented().encoded();
+    }
 protected:
     ///////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////

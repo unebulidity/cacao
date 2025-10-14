@@ -215,16 +215,31 @@ protected:
         return false;
     }
     virtual bool UpdateHash() {
-        String hashXString;
-        const char* hashChars;
-        size_t hashLength;
+        const char* hashChars = 0;
+        size_t hashLength = 0;
         if ((hashChars = (m_hashArray.elements()))
             && ((hashLength = m_hashArray.length()))) {
-            hashXString.appendx(hashChars, hashLength, HashIsUpperCase());
-            LOG_DEBUG("ShowHash(hashXString = \"" << hashXString << "\")...");
-            ShowHash(hashXString);
+            String hashString;
+            if ((m_hash.encoded())) {
+                hashString.appendx(hashChars, hashLength, HashIsUpperCase());
+            } else {
+                if ((HashIsUpperCase())) {
+                    const char* hashChar = 0;
+                    for (hashChar = hashChars; hashLength; --hashLength, ++hashChar) {
+                        char c = *hashChar;
+                        if (('a'<=c) && ('z'>=c)) {
+                            c = 'A'+(c-'a');
+                        }
+                        hashString.append(&c, 1);
+                    }
+                } else {
+                    hashString.append(hashChars, hashLength);
+                }
+            }
+            LOG_DEBUG("ShowHash(hashString = \"" << hashString << "\")...");
+            ShowHash(hashString);
             return true;
-        }
+        } else {}
         return false;
     }
     ///////////////////////////////////////////////////////////////////////
