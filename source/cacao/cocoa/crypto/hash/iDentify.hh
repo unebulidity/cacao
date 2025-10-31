@@ -34,6 +34,7 @@
 #include "xos/network/local/dgram/transport.hpp"
 #include "xos/network/local/endpoint.hpp"
 
+#define CACAO_COCOA_CRYPTO_HASH_IDENTIFY_DERIVED_NAME "Identity"
 #define XOS_APP_CONSOLE_IDENTIFY_PORTNO 8484
 #define XOS_APP_CONSOLE_IDENTIFY_PORT XOS_BASE_2STRING(XOS_APP_CONSOLE_IDENTIFY_PORTNO)
 #define XOS_APP_CONSOLE_IDENTIFY_HOST "identify"
@@ -423,6 +424,11 @@ protected:
             if (!(err = all_Connect(target, source))) {} else {}
         } else {}
         return length;
+    }
+    ///////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////
+    virtual const char* name() const {
+        return CACAO_COCOA_CRYPTO_HASH_IDENTIFY_DERIVED_NAME;
     }
     ///////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////

@@ -40,6 +40,19 @@
         return nil;
     }
 
+    -(void) setTextColor:(NSColor*)textColor {
+        NSString* title = nil;
+        if ((title = [self title])) {
+            NSDictionary *attributes = nil;
+            if ((attributes = @{NSForegroundColorAttributeName:textColor})) {
+                NSAttributedString *attributedTitle = nil;
+                if ((attributedTitle = [[NSAttributedString alloc] initWithString:title attributes:attributes])) {
+                    [self setAttributedTitle:attributedTitle];
+                } else {}
+            } else {}
+        } else {}
+    }
+  
     - (BOOL)check:(BOOL)checked {
         [self setState:((checked)?(NSOnState):(NSOffState))];
         return [self checked];

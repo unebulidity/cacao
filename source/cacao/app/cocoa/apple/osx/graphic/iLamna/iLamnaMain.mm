@@ -16,10 +16,13 @@
 ///   File: iLamnaMain.mm
 ///
 /// Author: $author$
-///   Date: 9/7/2016
+///   Date: 9/7/2016, 10/28/2025
 ///////////////////////////////////////////////////////////////////////
 #include "cacao/app/cocoa/apple/osx/graphic/iLamna/iLamnaMain.hh"
 #include "cacao/cocoa/apple/osx/Logger.hh"
+
+#define CACAO_APP_COCOA_APPLE_OSX_GRAPHIC_ILAMNA_WIDTH 480 /*/480/*/ /*/450/*/
+#define CACAO_APP_COCOA_APPLE_OSX_GRAPHIC_ILAMNA_HEIGHT 200 /*/200/*/ /*/750/*/
 
 ///////////////////////////////////////////////////////////////////////
 /// Implentation: iLamnaMain
@@ -49,7 +52,9 @@
     }
 
     - (NSRect)windowContentRect {
-        return NSMakeRect(0,0, 480,200);
+        return NSMakeRect
+        (0,0, CACAO_APP_COCOA_APPLE_OSX_GRAPHIC_ILAMNA_WIDTH,
+         CACAO_APP_COCOA_APPLE_OSX_GRAPHIC_ILAMNA_HEIGHT);
     }
 @end
 
