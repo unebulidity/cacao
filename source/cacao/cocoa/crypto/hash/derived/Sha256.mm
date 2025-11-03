@@ -1,5 +1,5 @@
-///////////////////////////////////////////////////////////////////////
-/// Copyright (c) 1988-2016 $organization$
+//////////////////////////////////////////////////////////////////////////
+/// Copyright (c) 1988-2025 $organization$
 ///
 /// This software is provided by the author and contributors ``as is'' 
 /// and any express or implied warranties, including, but not limited to, 
@@ -13,23 +13,22 @@
 /// or otherwise) arising in any way out of the use of this software, 
 /// even if advised of the possibility of such damage.
 ///
-///   File: Edit.hh
+///   File: Sha256.mm
 ///
 /// Author: $author$
-///   Date: 8/30/2016, 11/1/2025
-///////////////////////////////////////////////////////////////////////
-#ifndef _CACAO_COCOA_APPLE_OSX_EDIT_HH
-#define _CACAO_COCOA_APPLE_OSX_EDIT_HH
+///   Date: 11/2/2025
+//////////////////////////////////////////////////////////////////////////
+#include "cacao/cocoa/crypto/hash/derived/Sha256.hh"
 
-#include "cacao/cocoa/apple/osx/TextField.hh"
+namespace cacao {
+namespace cocoa {
+namespace crypto {
+namespace hash {
+namespace derived {
 
-///////////////////////////////////////////////////////////////////////
-/// Interface: Edit
-///////////////////////////////////////////////////////////////////////
-@interface Edit: TextField {
-    }
-    - (Edit*)initWithFrame:(NSRect)rect stringValue:(NSString*)stringValue;
-@end
-#endif // _CACAO_COCOA_APPLE_OSX_EDIT_HH 
-        
+} /// namespace derived 
+} /// namespace hash 
+} /// namespace crypto 
+} /// namespace cocoa 
+} /// namespace cacao 
 

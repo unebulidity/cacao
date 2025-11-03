@@ -170,18 +170,76 @@ public:
     ///////////////////////////////////////////////////////////////////////
     virtual bool Hash() {
         String s;
-        LOG_DEBUG("GetHashText(s)...");
-        if (GetHashText(s)) {
-            LOG_DEBUG("...text = \"" << s << "\"");
+        LOG_DEBUG("GetUser(s)...");
+        if (GetUser(s)) {
+            LOG_DEBUG("...User = \"" << s << "\"");
             if (0 < s.length()) {
-                return HashText();
+                String text("{\"password\":{\"user\":\"");
+
+                text.append(s);
+                LOG_DEBUG("GetResource(s)...");
+                if (GetResource(s)) {
+                    LOG_DEBUG("...Resource = \"" << s << "\"");
+                    if (0 < s.length()) {
+
+                        text.append("\",\"resource\":\"");
+                        text.append(s);
+                        LOG_DEBUG("GetPassword(s)...");
+                        if (GetPassword(s)) {
+                            LOG_DEBUG("...Password = \"" << s << "\"");
+                            if (0 < s.length()) {
+
+                                text.append("\",\"password\":\"");
+                                text.append(s);
+                                text.append("\"}}");
+
+                                LOG_DEBUG("GetHash(s)...");
+                                if (GetHash(s)) {
+                                    LOG_DEBUG("...Hash = \"" << s << "\"");
+                                    if (0 < s.length()) {
+                                        LOG_DEBUG("ClearHash()...");
+                                        ClearHash();
+                                    }
+                                }
+                                LOG_DEBUG("GetHashText(s)...");
+                                if (GetHashText(s)) {
+                                    LOG_DEBUG("...HashText = \"" << s << "\"");
+                                    if (0 < s.length()) {
+
+                                        LOG_DEBUG("GetHashFileName...");
+                                        if (GetHashFileName(s)) {
+                                            LOG_DEBUG("...HashFileName = \"" << s << "\"");
+                                            if (0 < s.length()) {
+                                                return HashFile();
+                                            }
+                                        }
+                                        return HashText();
+                                    } else {
+                                        LOG_DEBUG("SetHashText(\"" << text << "\")...");
+                                        SetHashText(text);
+                                    }
+                                }
+                            } else {
+                            }
+                        }
+                    } else {
+                    }
+                }
+            } else {
             }
         }
         LOG_DEBUG("GetHashFileName...");
         if (GetHashFileName(s)) {
-            LOG_DEBUG("...file = \"" << s << "\"");
+            LOG_DEBUG("...HashFileName = \"" << s << "\"");
             if (0 < s.length()) {
                 return HashFile();
+            }
+        }
+        LOG_DEBUG("GetHashText(s)...");
+        if (GetHashText(s)) {
+            LOG_DEBUG("...HashText = \"" << s << "\"");
+            if (0 < s.length()) {
+                return HashText();
             }
         }
         LOG_DEBUG("HashBlank()...");
@@ -193,10 +251,28 @@ public:
     }
     ///////////////////////////////////////////////////////////////////////
     virtual bool HashCancel() {
+        String s;
+        LOG_DEBUG("GetHashText(s)...");
+        if (GetHashText(s)) {
+            LOG_DEBUG("...HashText = \"" << s << "\"");
+            if (0 < s.length()) {
+                LOG_DEBUG("ClearHashText()...");
+                ClearHashText();
+            }
+        }
+        LOG_DEBUG("GetHashFileName(s)...");
+        if (GetHashFileName(s)) {
+            LOG_DEBUG("...HashFileName = \"" << s << "\"");
+            if (0 < s.length()) {
+                LOG_DEBUG("ClearHashFileName()...");
+                ClearHashFileName();
+            }
+        }
         return Extends::HashCancel();
     }
     ///////////////////////////////////////////////////////////////////////
     virtual bool UpdateHash() {
+        LOG_DEBUG("return Extends::UpdateHash()...");
         return Extends::UpdateHash();
     }
     ///////////////////////////////////////////////////////////////////////
@@ -228,6 +304,22 @@ protected:
 
     ///////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////
+    virtual bool ClearHashFileName() {
+        if ((m_controlView)) {
+            [m_controlView clearFile];
+            return true;
+        }
+        return false;
+    }
+    ///////////////////////////////////////////////////////////////////////
+    virtual bool SetHashFileName(const String& hashFileName) {
+        if ((m_controlView)) {
+            [m_controlView setText:hashFileName];
+            return true;
+        }
+        return false;
+    }
+    ///////////////////////////////////////////////////////////////////////
     virtual bool GetHashFileName(String& fileName) {
         if ((m_controlView)) {
             [m_controlView getFile:fileName];
@@ -236,9 +328,54 @@ protected:
         return false;
     }
     ///////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////
+    virtual bool ClearHashText() {
+        if ((m_controlView)) {
+            [m_controlView clearText];
+            return true;
+        }
+        return false;
+    }
+    ///////////////////////////////////////////////////////////////////////
+    virtual bool SetHashText(const String& hashText) {
+        if ((m_controlView)) {
+            [m_controlView setText:hashText];
+            return true;
+        }
+        return false;
+    }
+    ///////////////////////////////////////////////////////////////////////
     virtual bool GetHashText(String& hashText) {
         if ((m_controlView)) {
             [m_controlView getText:hashText];
+            return true;
+        }
+        return false;
+    }
+    ///////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////
+
+    ///////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////
+    virtual bool GetUser(String& text) {
+        if ((m_controlView)) {
+            [m_controlView getUser:text];
+            return true;
+        }
+        return false;
+    }
+    ///////////////////////////////////////////////////////////////////////
+    virtual bool GetResource(String& text) {
+        if ((m_controlView)) {
+            [m_controlView getResource:text];
+            return true;
+        }
+        return false;
+    }
+    ///////////////////////////////////////////////////////////////////////
+    virtual bool GetPassword(String& text) {
+        if ((m_controlView)) {
+            [m_controlView getPassword:text];
             return true;
         }
         return false;
@@ -257,9 +394,18 @@ protected:
     }
     ///////////////////////////////////////////////////////////////////////
     virtual bool ClearHash() {
+        Extends::ClearHash();
         if ((m_controlView)) {
             String hashText;
             [m_controlView setHash:hashText];
+            return true;
+        }
+        return false;
+    }
+    ///////////////////////////////////////////////////////////////////////
+    virtual bool GetHash(String& text) {
+        if ((m_controlView)) {
+            [m_controlView getHash:text];
             return true;
         }
         return false;

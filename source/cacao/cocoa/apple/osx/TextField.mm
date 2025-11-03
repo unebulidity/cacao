@@ -16,7 +16,7 @@
 ///   File: TextField.mm
 ///
 /// Author: $author$
-///   Date: 8/30/2016
+///   Date: 8/30/2016, 11/1/2025
 ///////////////////////////////////////////////////////////////////////
 #include "cacao/cocoa/apple/osx/TextField.hh"
 
@@ -24,6 +24,9 @@
 /// Implentation: TextField
 ///////////////////////////////////////////////////////////////////////
 @implementation TextField
+
+    ///////////////////////////////////////////////////////////////////////
+    /// initWithFrame
     - (TextField*)initWithFrame:(NSRect)rect stringValue:(NSString*)stringValue {
         if (([super initWithFrame:rect])) {
             if ((stringValue)) {
@@ -33,7 +36,8 @@
         }
         return nil;
     }
-
+    ///////////////////////////////////////////////////////////////////////
+    /// setTextUTF8String
     - (const char*)setTextUTF8String:(const String&)text {
         const char* chars = nil;
         if ((chars = text.chars())) {
@@ -45,6 +49,8 @@
         }
         return nil;
     }
+    ///////////////////////////////////////////////////////////////////////
+    /// getTextUTF8String
     - (const char*)getTextUTF8String:(String&)text {
         NSString* string = nil;
         if ((string = [self stringValue])) {
@@ -55,5 +61,13 @@
             }
         }
         return nil;
+    }
+    ///////////////////////////////////////////////////////////////////////
+    /// unselectText
+    - (void) unselectText {
+        NSText*fieldEditor = nil;
+        if ((fieldEditor = [self currentEditor])) {
+            [fieldEditor setSelectedRange:NSMakeRange(0, 0)];
+        } else {}
     }
 @end

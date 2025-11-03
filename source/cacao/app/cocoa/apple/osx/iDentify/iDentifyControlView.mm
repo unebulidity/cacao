@@ -52,6 +52,10 @@ namespace iDentify {
         const char* userLabel = XOS_GUI_COCOA_CRYPTO_HASH_IHASH_CONTROL_USER_LABEL;
         const char* resourceLabel = XOS_GUI_COCOA_CRYPTO_HASH_IHASH_CONTROL_RESOURCE_LABEL;
         const char* passwordLabel = XOS_GUI_COCOA_CRYPTO_HASH_IHASH_CONTROL_PASSWORD_LABEL;
+        const char* user = XOS_GUI_COCOA_CRYPTO_HASH_IHASH_CONTROL_USER;
+        const char* resource = XOS_GUI_COCOA_CRYPTO_HASH_IHASH_CONTROL_RESOURCE;
+        const char* password = XOS_GUI_COCOA_CRYPTO_HASH_IHASH_CONTROL_PASSWORD;
+        const char* unknown = XOS_GUI_COCOA_CRYPTO_HASH_IHASH_CONTROL_UNKNOWN;
 
         size_t hashSize = XOS_GUI_COCOA_CRYPTO_HASH_IHASH_HASH_SIZE;
         size_t hashSizeMax = XOS_GUI_COCOA_CRYPTO_HASH_IHASH_CONTROL_HASH_SIZE_MAX;
@@ -216,7 +220,8 @@ namespace iDentify {
                 frame.origin.x += frame.size.width + colSpacing;
                 frame.size.width = hashWidth;
 
-                if ((_passwordEdit = [[Edit alloc] initWithFrame:frame  stringValue:nil])) {
+                if ((_passwordEdit = [[Edit alloc] initWithFrame:frame  
+                     stringValue:[NSString stringWithUTF8String:password]])) {
                     [self addSubview:_passwordEdit];
                     if (width < (rowWidth += frame.size.width)) {
                         width = rowWidth + border;
@@ -244,7 +249,8 @@ namespace iDentify {
                 frame.origin.x += frame.size.width + colSpacing;
                 frame.size.width = hashWidth;
 
-                if ((_resourceEdit = [[Edit alloc] initWithFrame:frame  stringValue:nil])) {
+                if ((_resourceEdit = [[Edit alloc] initWithFrame:frame  
+                     stringValue:[NSString stringWithUTF8String:resource]])) {
                     [self addSubview:_resourceEdit];
                     if (width < (rowWidth += frame.size.width)) {
                         width = rowWidth + border;
@@ -272,7 +278,8 @@ namespace iDentify {
                 frame.origin.x += frame.size.width + colSpacing;
                 frame.size.width = hashWidth;
 
-                if ((_userEdit = [[Edit alloc] initWithFrame:frame  stringValue:nil])) {
+                if ((_userEdit = [[Edit alloc] initWithFrame:frame  
+                     stringValue:[NSString stringWithUTF8String:user]])) {
                     [self addSubview:_userEdit];
                     if (width < (rowWidth += frame.size.width)) {
                         width = rowWidth + border;
@@ -301,7 +308,8 @@ namespace iDentify {
                 frame.origin.x += frame.size.width + colSpacing;
                 frame.size.width = hashWidth;
 
-                if ((_hashEdit = [[Static alloc] initWithFrame:frame  stringValue:nil])) {
+                if ((_hashEdit = [[Static alloc] initWithFrame:frame  
+                     stringValue:[NSString stringWithUTF8String:unknown]])) {
                     [_hashEdit setTextColor:_fgColor];
                     [_hashEdit setBackgroundColor:_bgColor];
                     [_hashEdit setBezeled:NO];
@@ -352,6 +360,11 @@ namespace iDentify {
 
     ///////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////
+    - (void)clearFile {
+        if ((_fileEdit)) {
+            [_fileEdit setTextUTF8String:""];
+        }
+    }
     - (void)setFile:(const String&)text{
         if ((_fileEdit)) {
             [_fileEdit setTextUTF8String:text];
@@ -365,6 +378,11 @@ namespace iDentify {
 
     ///////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////
+    - (void)clearText {
+        if ((_textEdit)) {
+            [_textEdit setTextUTF8String:""];
+        }
+    }
     - (void)setText:(const String&)text{
         if ((_textEdit)) {
             [_textEdit setTextUTF8String:text];
@@ -379,39 +397,39 @@ namespace iDentify {
     ///////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////
     - (void)setUser:(const String&)text{
-        if ((_textEdit)) {
-            [_textEdit setUserUTF8String:text];
+        if ((_userEdit)) {
+            [_userEdit setTextUTF8String:text];
         }
     }
     - (void)getUser:(String&)text{
-        if ((_textEdit)) {
-            [_textEdit getUserUTF8String:text];
+        if ((_userEdit)) {
+            [_userEdit getTextUTF8String:text];
         }
     }
     
     ///////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////
     - (void)setResource:(const String&)text{
-        if ((_textEdit)) {
-            [_textEdit setResourceUTF8String:text];
+        if ((_resourceEdit)) {
+            [_resourceEdit setTextUTF8String:text];
         }
     }
     - (void)getResource:(String&)text{
-        if ((_textEdit)) {
-            [_textEdit getResourceUTF8String:text];
+        if ((_resourceEdit)) {
+            [_resourceEdit getTextUTF8String:text];
         }
     }
     
     ///////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////
     - (void)setPassword:(const String&)text{
-        if ((_textEdit)) {
-            [_textEdit setPasswordUTF8String:text];
+        if ((_passwordEdit)) {
+            [_passwordEdit setTextUTF8String:text];
         }
     }
     - (void)getPassword:(String&)text{
-        if ((_textEdit)) {
-            [_textEdit getPasswordUTF8String:text];
+        if ((_passwordEdit)) {
+            [_passwordEdit getTextUTF8String:text];
         }
     }
 

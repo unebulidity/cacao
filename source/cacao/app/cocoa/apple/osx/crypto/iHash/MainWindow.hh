@@ -198,6 +198,13 @@ protected:
         }
         return false;
     }
+    virtual bool SetHashText(const String& hashText) {
+        if ((m_controlView)) {
+            [m_controlView setText:hashText];
+            return true;
+        }
+        return false;
+    }
     virtual bool GetHashText(String& hashText) {
         if ((m_controlView)) {
             [m_controlView getText:hashText];

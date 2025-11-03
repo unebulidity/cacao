@@ -22,7 +22,7 @@
 #define _CACAO_COCOA_CRYPTO_HASH_SHA256_HH
 
 #include "cacao/cocoa/crypto/hash/Base.hh"
-#include "talas/crypto/hash/openssl/sha256.cpp"
+#include "talas/crypto/hash/openssl/sha256.hpp"
 
 namespace cacao {
 namespace cocoa {

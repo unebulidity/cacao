@@ -31,6 +31,7 @@
     - (TextField*)initWithFrame:(NSRect)rect stringValue:(NSString*)stringValue;
     - (const char*)setTextUTF8String:(const String&)text;
     - (const char*)getTextUTF8String:(String&)text;
+    - (void) unselectText;
 @end
 #endif // _CACAO_COCOA_APPLE_OSX_TEXTFIELD_HH 
         

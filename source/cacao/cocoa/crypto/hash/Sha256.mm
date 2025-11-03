@@ -19,6 +19,7 @@
 ///   Date: 9/6/2016
 ///////////////////////////////////////////////////////////////////////
 #include "cacao/cocoa/crypto/hash/Sha256.hh"
+#include "talas/crypto/hash/openssl/sha256.cpp"
 
 namespace cacao {
 namespace cocoa {

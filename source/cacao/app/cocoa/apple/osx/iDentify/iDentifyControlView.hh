@@ -52,6 +52,11 @@
 #define XOS_GUI_COCOA_CRYPTO_HASH_IHASH_CONTROL_RESOURCE_LABEL "Resource"
 #define XOS_GUI_COCOA_CRYPTO_HASH_IHASH_CONTROL_PASSWORD_LABEL "Password"
 
+#define XOS_GUI_COCOA_CRYPTO_HASH_IHASH_CONTROL_USER "user"
+#define XOS_GUI_COCOA_CRYPTO_HASH_IHASH_CONTROL_RESOURCE "resource"
+#define XOS_GUI_COCOA_CRYPTO_HASH_IHASH_CONTROL_PASSWORD "password"
+#define XOS_GUI_COCOA_CRYPTO_HASH_IHASH_CONTROL_UNKNOWN "unknown"
+
 #define CACAO_APP_COCOA_APPLE_OSX_IDENTIFY_IDENTIFYCONTROLVIEW_FG_COLOR_R 0xDD
 #define CACAO_APP_COCOA_APPLE_OSX_IDENTIFY_IDENTIFYCONTROLVIEW_FG_COLOR_G 0xDD
 #define CACAO_APP_COCOA_APPLE_OSX_IDENTIFY_IDENTIFYCONTROLVIEW_FG_COLOR_B 0xDD
@@ -134,11 +139,13 @@ namespace iDentify {
 
     ///////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////
+    - (void)clearFile;
     - (void)setFile:(const String&)text;
     - (void)getFile:(String&)text;
 
     ///////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////
+    - (void)clearText;
     - (void)setText:(const String&)text;
     - (void)getText:(String&)text;
 

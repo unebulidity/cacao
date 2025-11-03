@@ -42,6 +42,8 @@ public:
     ///////////////////////////////////////////////////////////////////////
     MainWindowT()
     : m_hash(cacao::cocoa::crypto::hash::Implement::TheDerived()),
+      m_hashFile(cacao::cocoa::crypto::hash::Implement::TheFileDerived()),
+      m_hashEncoded(false),
       m_file(0),
       m_fileSize(0),
       m_fileAmount(0),
@@ -64,11 +66,18 @@ public:
 protected:
     ///////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////
+    virtual bool ClearHashText() {
+        return true; }
+    virtual bool SetHashText(const String& hashText) { return true; }
     virtual bool GetHashText(String& hashText) { return true; }
+    virtual bool ClearHashFileName() { return true; }
+    virtual bool SetHashFileName(const String& fileName) { return true; }
     virtual bool GetHashFileName(String& fileName) { return true; }
     virtual bool PostUpdateFileHashEvent() { return true; }
     virtual bool ShowHash(const String& hashX) { return true; }
-    virtual bool ClearHash() { return true; }
+    virtual bool ClearHash() { 
+        m_hashEncoded = false;
+        return true; }
     virtual bool HashIsUpperCase() { return false; }
     virtual bool ShowProgress(size_t maximum, size_t amount) { return true; }
     virtual bool UpdateProgress(size_t amount) { return true; }
@@ -102,7 +111,7 @@ protected:
     virtual bool HashFile() {
         CloseFile();
         if ((ClearHash())) {
-            if ((BeginHash())) {
+            if ((BeginHashFile())) {
                 String fileString;
                 if ((GetHashFileName(fileString))) {
                     const char* chars;
@@ -131,9 +140,9 @@ protected:
         if ((m_file)) {
             m_fileBuffer[m_fileBufferSize-1] = 0;
             if (0 < (m_fileBufferLength = fread(m_fileBuffer, 1,m_fileBufferSize-1, m_file))) {
-                if ((Hash(m_fileBuffer, m_fileBufferLength))) {
+                if ((HashFile(m_fileBuffer, m_fileBufferLength))) {
                     if ((m_fileBufferSize-1) > m_fileBufferLength) {
-                        EndHash();
+                        EndHashFile();
                     } else {
                         if (isShow) {
                             ShowProgress();
@@ -145,7 +154,7 @@ protected:
                     }
                 }
             } else {
-                EndHash();
+                EndHashFile();
             }
             CloseFile();
             return true;
@@ -210,6 +219,40 @@ protected:
 
     ///////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////
+    virtual bool BeginHashFile() {
+        ssize_t hashSize = 0;
+        if ((0 < (hashSize = m_hashFile.hash_size()))
+            && (0 < (m_hashArray.set_length(hashSize)))
+            && (0 <= (m_hashFile.initialize()))) {
+            return true;
+        }
+        return false;
+    }
+    ///////////////////////////////////////////////////////////////////////
+    virtual bool HashFile(const void* in, ssize_t inlen) {
+        if (0 <= (m_hashFile.hash(in, inlen))) {
+            return true;
+        }
+        return false;
+    }
+    ///////////////////////////////////////////////////////////////////////
+    virtual bool EndHashFile() {
+        if (0 < (m_hashFile.finalize
+            (m_hashArray.elements(), m_hashArray.length()))) {
+            UpdateHashFile();
+            return true;
+        }
+        return false;
+    }
+    ///////////////////////////////////////////////////////////////////////
+    virtual bool UpdateHashFile() {
+        if ((UpdateHash(m_hashFile))) {
+            return true;
+        }
+        return false;
+    }
+    ///////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////
     virtual bool BeginHash() {
         ssize_t hashSize = 0;
         if ((0 < (hashSize = m_hash.hash_size()))
@@ -237,14 +280,24 @@ protected:
     }
     ///////////////////////////////////////////////////////////////////////
     virtual bool UpdateHash() {
+        if ((UpdateHash(m_hash))) {
+            return true;
+        }
+        return false;
+    }
+    ///////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////
+    virtual bool UpdateHash(cacao::cocoa::crypto::hash::Implement& hash) {
         const char* hashChars = 0;
         size_t hashLength = 0;
         if ((hashChars = (m_hashArray.elements()))
             && ((hashLength = m_hashArray.length()))) {
             String hashString;
-            if ((m_hash.encoded())) {
+            if ((hash.encoded() || (m_hashEncoded))) {
+                m_hashEncoded = true;
                 hashString.appendx(hashChars, hashLength, HashIsUpperCase());
             } else {
+                m_hashEncoded = false;
                 if ((HashIsUpperCase())) {
                     const char* hashChar = 0;
                     for (hashChar = hashChars; hashLength; --hashLength, ++hashChar) {
@@ -270,8 +323,9 @@ protected:
     ///////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////
 protected:
-    cacao::cocoa::crypto::hash::Implement &m_hash;
+    cacao::cocoa::crypto::hash::Implement &m_hash, &m_hashFile;
     xos::base::char_array m_hashArray;
+    bool m_hashEncoded;
     FILE* m_file;
     size_t m_fileSize;
     size_t m_fileAmount;

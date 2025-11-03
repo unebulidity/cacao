@@ -16,7 +16,7 @@
 ///   File: Derived.mm
 ///
 /// Author: $author$
-///   Date: 9/22/2025
+///   Date: 9/22/2025, 11/2/2025
 //////////////////////////////////////////////////////////////////////////
 #include "cacao/cocoa/crypto/hash/Derived.hh"
 #include "talas/crypto/hash/derived.cpp"
@@ -31,6 +31,13 @@ namespace hash {
 Implement& Implement::TheDerived() {
     static Derived the_Derived;
     return the_Derived;
+}
+
+///////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////
+Implement& Implement::TheFileDerived() {
+    static Derived the_FileDerived;
+    return the_FileDerived;
 }
 
 } /// namespace hash 
