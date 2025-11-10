@@ -38,7 +38,8 @@ public:
     typedef Base Extends;
     ///////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////
-    Derived(): m_implement(*this), m_derived(m_implement) {
+    Derived()
+    : m_implement(*this), m_derived(m_implement) {
     }
     virtual ~Derived() {
     }
@@ -56,7 +57,11 @@ protected:
         ///////////////////////////////////////////////////////////////////////
         /// constructor / destructor
         ///////////////////////////////////////////////////////////////////////
-        implement(Derived &derived): m_derived(derived) {
+        implement(Derived &derived)
+        : m_derived(derived),
+          m_before_password("{\"password\":\""), 
+          m_after_password("\"}"),
+          m_after_message("\r\n") {
         }
         virtual ~implement() {
         }
@@ -84,12 +89,43 @@ protected:
             size_t length = 0;
             const char* chars = 0;
             const uint8_t* in = 0;
+
             LOG_DEBUG("...transform()");
             LOG_DEBUG("((0 < (length = m_derived.Transform(m_target, \"" << m_source << "\"))))...");
             if ((0 < (length = m_derived.Transform(m_target, m_source)))) {
+
                 LOG_DEBUG("((0 != (in = (const uint8_t*)(chars = m_target.has_chars(length)))))...");
                 if ((0 != (in = (const uint8_t*)(chars = m_target.has_chars(length))))) {
+                    size_t before_password_length = m_before_password.length(), 
+                           after_password_length = m_after_password.length(),
+                           after_message_length = m_after_message.length();
+
                     LOG_DEBUG("this->assign(m_derived.m_derived, \"" << chars << "\", " << length << ")...");
+                    LOG_DEBUG("((" << length << " > " << (before_password_length+after_password_length+after_message_length) << "))...");
+                    if ((length > (before_password_length+after_password_length+after_message_length))) {
+
+                        LOG_DEBUG("(!(m_before_password.compare((const char*)(in), before_password_length)))...");
+                        if (!(m_before_password.compare((const char*)(in), before_password_length))) {
+
+                            LOG_DEBUG("(!(m_after_password.compare((const char*)(in+(length-after_password_length)), after_password_length)))...");
+                            if (!(m_after_password.compare((const char*)(in+(length-after_password_length)), after_password_length))) {
+                                LOG_DEBUG("in += before_password_length...");
+                                in += before_password_length;
+                                LOG_DEBUG("length -= (before_password_length+after_password_length)...");
+                                length -= (before_password_length+after_password_length);
+                            } else {
+                                LOG_DEBUG("(!(m_after_password.compare((const char*)(in+(length-after_password_length-after_message_length)), after_password_length)))...");
+                                if (!(m_after_password.compare((const char*)(in+(length-after_password_length-after_message_length)), after_password_length))) {
+                                    LOG_DEBUG("in += before_password_length...");
+                                    in += before_password_length;
+                                    LOG_DEBUG("length -= (before_password_length+after_password_length+after_message_length)...");
+                                    length -= (before_password_length+after_password_length+after_message_length);
+                                } else {
+                                }
+                            }
+                        } else {}
+                    } else {}
+                    LOG_DEBUG("this->assign(m_derived.m_derived, in, length)...");
                     this->assign(m_derived.m_derived, in, length);
                 } else {}
             } else {}
@@ -114,7 +150,7 @@ protected:
         ///////////////////////////////////////////////////////////////////////
     protected:
         Derived &m_derived;
-        string m_target, m_source;
+        string m_before_password, m_after_password, m_after_message, m_target, m_source;
     }; /// class implement
     ///////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////
