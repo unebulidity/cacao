@@ -44,10 +44,10 @@
 		2D537FF22EBB827200E3770F /* Base.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2D537FF12EBB827200E3770F /* Base.mm */; };
 		2D537FF52EBB828A00E3770F /* iDentify.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2D537FF42EBB828A00E3770F /* iDentify.mm */; };
 		2D537FF82EBB82D800E3770F /* key_icon.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2D537FF62EBB82D800E3770F /* key_icon.cpp */; };
-		2D537FFA2EBB85E300E3770F /* libxosnadir.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D537FF92EBB85E300E3770F /* libxosnadir.a */; };
 		2DD011982EBAB39E00829A83 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2DD011972EBAB39E00829A83 /* Assets.xcassets */; };
 		2DD0119B2EBAB39E00829A83 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2DD011992EBAB39E00829A83 /* Main.storyboard */; };
-		2DD011A42EBAB65300829A83 /* libjson.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DD011A32EBAB65300829A83 /* libjson.a */; };
+		2DD772CB2EC20D2C00D68BC3 /* libxosnadir.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DD772CA2EC20D2C00D68BC3 /* libxosnadir.a */; };
+		2DD772CD2EC20D3F00D68BC3 /* libxosrostra.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DD772CC2EC20D3F00D68BC3 /* libxosrostra.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -128,6 +128,8 @@
 		2DD0119A2EBAB39E00829A83 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		2DD0119C2EBAB39E00829A83 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2DD011A32EBAB65300829A83 /* libjson.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libjson.a; path = ../../../../../uLucidity/thirdparty/libjson/libjson_7.6.1/build/os/QtCreator/Debug/lib/libjson/libjson.a; sourceTree = "<group>"; };
+		2DD772CA2EC20D2C00D68BC3 /* libxosnadir.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libxosnadir.a; path = ../../../../../projects/build/os/Xcode/unebulidity/Build/Products/Debug/libxosnadir.a; sourceTree = "<group>"; };
+		2DD772CC2EC20D3F00D68BC3 /* libxosrostra.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libxosrostra.a; path = ../../../../../projects/build/os/Xcode/unebulidity/Build/Products/Debug/libxosrostra.a; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,8 +140,8 @@
 				2D537FE62EBB80AD00E3770F /* Foundation.framework in Frameworks */,
 				2D537FE42EBB808600E3770F /* CoreFoundation.framework in Frameworks */,
 				2D537FE22EBB807000E3770F /* AppKit.framework in Frameworks */,
-				2D537FFA2EBB85E300E3770F /* libxosnadir.a in Frameworks */,
-				2DD011A42EBAB65300829A83 /* libjson.a in Frameworks */,
+				2DD772CB2EC20D2C00D68BC3 /* libxosnadir.a in Frameworks */,
+				2DD772CD2EC20D3F00D68BC3 /* libxosrostra.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -252,6 +254,8 @@
 		2DD011A22EBAB65300829A83 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2DD772CC2EC20D3F00D68BC3 /* libxosrostra.a */,
+				2DD772CA2EC20D2C00D68BC3 /* libxosnadir.a */,
 				2D537FF92EBB85E300E3770F /* libxosnadir.a */,
 				2D537FE52EBB80AD00E3770F /* Foundation.framework */,
 				2D537FE32EBB808600E3770F /* CoreFoundation.framework */,
@@ -493,10 +497,7 @@
 				);
 				INFOPLIST_FILE = iDentify/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				LIBRARY_SEARCH_PATHS = (
-					"\"$(SRCROOT)/../../../../../projects/build/os/Xcode/unebulidity/Build/Products/Debug\"",
-					"\"$(SRCROOT)/../../../../../uLucidity/thirdparty/libjson/libjson_7.6.1/build/os/QtCreator/Debug/lib/libjson\"",
-				);
+				LIBRARY_SEARCH_PATHS = "\"$(SRCROOT)/../../../../../projects/build/os/Xcode/unebulidity/Build/Products/Debug\"";
 				PRODUCT_BUNDLE_IDENTIFIER = ulucidity.iDentify;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -523,10 +524,7 @@
 				);
 				INFOPLIST_FILE = iDentify/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				LIBRARY_SEARCH_PATHS = (
-					"\"$(SRCROOT)/../../../../../projects/build/os/Xcode/unebulidity/Build/Products/Debug\"",
-					"\"$(SRCROOT)/../../../../../uLucidity/thirdparty/libjson/libjson_7.6.1/build/os/QtCreator/Debug/lib/libjson\"",
-				);
+				LIBRARY_SEARCH_PATHS = "\"$(SRCROOT)/../../../../../projects/build/os/Xcode/unebulidity/Build/Products/Debug\"";
 				PRODUCT_BUNDLE_IDENTIFIER = ulucidity.iDentify;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
